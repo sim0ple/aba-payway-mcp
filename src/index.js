@@ -419,5 +419,39 @@ tool(
   }
 );
 
+// ---------------------------------------------------------------------------
+// Documentation
+// ---------------------------------------------------------------------------
+
+tool(
+  "payway_docs",
+  "Fetch ABA PayWay developer documentation as LLM-friendly markdown. Call with no arguments to get the index (llms.txt) listing every doc URL, then pass one of those URLs/paths to read a specific page. No credentials required.",
+  {
+    url: z
+      .string()
+      .optional()
+      .describe("A developer.payway.com.kh .md doc URL or path from the index; omit to list all docs"),
+  },
+  async (_config, a) => {
+    const base = "https://developer.payway.com.kh";
+    let target;
+    if (!a.url) {
+      target = base + "/llms.txt";
+    } else if (/^https?:\/\//i.test(a.url)) {
+      const u = new URL(a.url);
+      // ponytail: host-locked to block SSRF; docs only live on this host.
+      if (u.hostname !== "developer.payway.com.kh") {
+        throw new Error("Only developer.payway.com.kh doc URLs are allowed.");
+      }
+      target = u.toString();
+    } else {
+      target = base + "/" + a.url.replace(/^\/+/, "");
+    }
+    const res = await fetch(target);
+    const content = await res.text();
+    return { url: target, http_status: res.status, content };
+  }
+);
+
 const transport = new StdioServerTransport();
 await server.connect(transport);
