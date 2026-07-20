@@ -15,7 +15,7 @@ import {
 
 const server = new McpServer({
   name: "aba-payway-mcp",
-  version: "1.0.1",
+  version: "1.0.2",
 });
 
 // Wraps a tool handler so config errors and upstream failures come back
