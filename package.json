@@ -1,6 +1,6 @@
 {
   "name": "aba-payway-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unofficial, open-source MCP server for ABA PayWay (developer.payway.com.kh) — purchase checkout, KHQR generation, transaction lookup/list, refunds, payment links, and exchange rates. Works with Claude Code, Claude Desktop, Cursor, Windsurf, Cline, VS Code/Copilot, Gemini CLI, or any MCP client.",
   "type": "module",
   "main": "src/index.js",

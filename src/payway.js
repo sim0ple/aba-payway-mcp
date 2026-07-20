@@ -70,16 +70,13 @@ export function encryptMerchantAuth(payloadObj, rsaPublicKeyPem) {
 export class PayWayConfigError extends Error {}
 
 export function loadConfig() {
-  const merchantId = process.env.PAYWAY_MERCHANT_ID;
-  const apiKey = process.env.PAYWAY_API_KEY;
+  // ponytail: credentials optional — tools run without them (real PayWay calls
+  // still 401 upstream, but the server never blocks on missing env vars).
+  const merchantId = process.env.PAYWAY_MERCHANT_ID || "";
+  const apiKey = process.env.PAYWAY_API_KEY || "";
   const env = (process.env.PAYWAY_ENV || "sandbox").toLowerCase();
   const rsaPublicKey = process.env.PAYWAY_RSA_PUBLIC_KEY;
 
-  if (!merchantId || !apiKey) {
-    throw new PayWayConfigError(
-      "Missing PAYWAY_MERCHANT_ID or PAYWAY_API_KEY environment variables."
-    );
-  }
   if (!BASE_URLS[env]) {
     throw new PayWayConfigError(`PAYWAY_ENV must be "sandbox" or "production", got "${env}".`);
   }
