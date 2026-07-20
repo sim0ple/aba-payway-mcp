@@ -1,0 +1,52 @@
+{
+  "name": "aba-payway-mcp",
+  "version": "1.0.0",
+  "description": "Unofficial, open-source MCP server for ABA PayWay (developer.payway.com.kh) — purchase checkout, KHQR generation, transaction lookup/list, refunds, payment links, and exchange rates. Works with Claude Code, Claude Desktop, Cursor, Windsurf, Cline, VS Code/Copilot, Gemini CLI, or any MCP client.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "aba-payway-mcp": "src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ],
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/smoke.mjs && node test/smoke2.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "payway",
+    "aba",
+    "aba-bank",
+    "khqr",
+    "cambodia",
+    "payment-gateway",
+    "claude",
+    "claude-code",
+    "cursor",
+    "windsurf",
+    "gemini-cli"
+  ],
+  "author": "sim0ple",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sim0ple/aba-payway-mcp.git"
+  },
+  "homepage": "https://github.com/sim0ple/aba-payway-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/sim0ple/aba-payway-mcp/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.23.8"
+  }
+}
